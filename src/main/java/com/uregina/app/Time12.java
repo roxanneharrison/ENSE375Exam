@@ -76,7 +76,18 @@ public class Time12
 	{
 		int difference=0;
 		//Todo: add your code here
-
+		
+		// Convert to 24h time
+		Time24 t1_24= t1.toTime24();
+		Time24 t2_24= t2.toTime24();
+		// Calculate minute difference
+		int t1Hours = t1_24.getHours();
+		int t2Hours = t2_24.getHours();
+		int t1Minutes = t1_24.getMinutes();
+		int t2Minutes = t2_24.getMinutes();
+		int hoursDifference = t1Hours - t2Hours;
+		int minutesDifference = t1Minutes - t2Minutes;
+		difference = (hoursDifference * 60) + minutesDifference;
 		// end of your code
 		return difference;
 	}
