@@ -49,8 +49,23 @@ public class Time24
 	{
 		Time24 time=null;
 		//Todo : add your code here
-		hours = hours + 12;
+
+		// 1 - 11 pm add 12 hours
+		if((hours >=1 && hours <= 11) && am_pm.equals(AmPm.pm)){
+			hours = hours + 12;
+		// 12 am subtract 12 hours
+		}else if(hours == 12 && am_pm.equals(AmPm.am)){
+			hours = hours - 12;
+		// 1 - 11 am or 12 pm no change
+		}else {
+
+		}
+		// Return time
+		try{
 		time = new Time24(hours, minutes);
+		}
+		catch(InvalidTimeException e)
+		{}
 
 		// End of your code
 		return time;
