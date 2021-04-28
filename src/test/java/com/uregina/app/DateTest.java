@@ -21,7 +21,7 @@ public class DateTest
             int month = 1;
             int year = 2021;
             // Create date and test function
-            Date date = new Date(day, month, year);
+            Date date = new Date(month, day, year);
             Date d1 = new Date(1,1,2021);
             Date d2 = new Date(2,1,2021);
             assertTrue(date.lessThan(d1, d2));

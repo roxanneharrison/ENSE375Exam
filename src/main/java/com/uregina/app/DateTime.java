@@ -51,7 +51,28 @@ public class DateTime
 	{
 		int diff=0;
 		//Todo: add your code here
-
+		// Error state for more than one day
+		Date d1NextDate = d1.getDate().nextDate();
+		Date d2NextDate = d2.getDate().nextDate();
+		// If either is within one day of eachother then pass
+		boolean checkNextDate = d1.equals(d2NextDate) || d2.equals(d1NextDate);
+		if(!d1.equals(d2) && !checkNextDate){
+			throw new MoreThanOneDayException();
+		}
+		// Get time difference of days
+		int d1Day = d1.getDate().getDay();
+		int d2Day = d2.getDate().getDay();
+		int daysApart = d1Day - d2Day;
+		// Time apart in minutes
+		Time12 d1Time = d1.getTime();
+		Time12 d2Time = d2.getTime();
+		int minutesApart = d1Time.subtract(d1Time, d2Time);
+		if(daysApart == 1){
+			minutesApart+= 24*60;
+		}else if(daysApart == -1){
+			minutesApart -= 24*60;
+		}else{}
+		diff = minutesApart;
 		//end of your code
 		return diff;
 	}
