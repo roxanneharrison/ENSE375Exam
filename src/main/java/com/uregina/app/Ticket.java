@@ -38,8 +38,46 @@ public class Ticket
 	public static boolean checkTicket( ArrayList<Flight> ticket, int maxFlightsCount, int maxFlightTime, int maxLayoverTime, boolean hasSchengenVisa)
 	{
 		//Todo: add your code here
-		
 
+		// CHECK AIRPORT CODE
+		for(Flight flight : ticket)
+		{
+			String aAirport = flight.getArrivalAirport();
+			String dAirport = flight.getDepatureAirport();
+			// LENGTH ERROR
+			if(aAirport.length() != 3 || dAirport.length() != 3) return false;
+			// NOT UPPERCASE ERROR
+			for(int i =0; i<3; i++){
+				char cd = dAirport.charAt(i);
+				char ca = aAirport.charAt(i);
+				if (!(cd >= 'A' && cd <= 'Z') || !(ca >= 'A' && ca <= 'Z')){
+					return false;
+				}
+			}
+		}
+		// CHECK MAX FLIGHTS COUNT
+		if(ticket.size() > maxFlightsCount) return false;
+		System.out.println("check");
+		// CHECK MAX FLIGHTS TIME
+		// try{
+		// for(Flight checkTime : ticket)
+		// {
+		// 	System.out.println(checkTime.calculateFlightTime());
+		// 	if(checkTime.calculateFlightTime() > maxFlightTime) return false;
+		// }
+		// }
+		// catch(MoreThanOneDayException| NegativeTimeException e){}
+
+		// CHECK MAX LAYOVER TIME
+		try{
+		for(int i=0; i< ticket.size()-1; i++){
+			Flight firstFlight = ticket.get(i);
+			Flight nextFlight = ticket.get(i+1);
+			int layoverTime = firstFlight.calculateLayoverTime(firstFlight, nextFlight);
+			System.out.println(layoverTime);
+		}
+		}
+		catch(MoreThanOneDayException| NegativeTimeException e){}
 		//end of your code
 		return true;
 	}
