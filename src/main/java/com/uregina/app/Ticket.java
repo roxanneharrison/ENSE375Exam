@@ -57,16 +57,15 @@ public class Ticket
 		}
 		// CHECK MAX FLIGHTS COUNT
 		if(ticket.size() > maxFlightsCount) return false;
-		System.out.println("check");
 		// CHECK MAX FLIGHTS TIME
-		// try{
-		// for(Flight checkTime : ticket)
-		// {
-		// 	System.out.println(checkTime.calculateFlightTime());
-		// 	if(checkTime.calculateFlightTime() > maxFlightTime) return false;
-		// }
-		// }
-		// catch(MoreThanOneDayException| NegativeTimeException e){}
+		try{
+		for(Flight checkTime : ticket)
+		{
+			System.out.println(checkTime.calculateFlightTime());
+			if(checkTime.calculateFlightTime() > maxFlightTime) return false;
+		}
+		}
+		catch(MoreThanOneDayException| NegativeTimeException e){}
 
 		// CHECK MAX LAYOVER TIME
 		try{
